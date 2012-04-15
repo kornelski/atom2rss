@@ -1,0 +1,1 @@
+XSL templates for conversion of Atom to RSS. [See project homepage for details and examples](http://atom.geekhood.net/).
