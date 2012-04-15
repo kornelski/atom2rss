@@ -89,7 +89,13 @@
 	 (<x:value-of select="atom:name"/><x:if test="@uri"> <x:value-of select="uri"/></x:if>)
 </x:template>
 	
-<x:template match="atom:author[not(contains(./atom:email,'webmaster'))][1]">
+<x:template match="atom:entry/atom:author[not(contains(./atom:email,'webmaster'))][1]">
+	<author>
+		<x:call-template name="person" />
+	</author>
+</x:template>
+
+<x:template match="atom:feed/atom:author[not(contains(./atom:email,'webmaster'))][1]">
 	<managingEditor>
 		<x:call-template name="person" />
 	</managingEditor>
