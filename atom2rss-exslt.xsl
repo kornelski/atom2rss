@@ -55,7 +55,7 @@
 </x:template>
 
 <x:template match="atom:entry/atom:published"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
-<x:template match="atom:entry/atom:updated"></x:template>
+<x:template match="atom:entry/atom:updated"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
 <x:template match="atom:feed/atom:updated"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
 
 <x:template match="atom:rights"><copyright><x:apply-templates /></copyright></x:template>
