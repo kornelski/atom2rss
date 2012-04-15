@@ -14,6 +14,7 @@
 <x:template match="/atom:feed">
   <rss version="2.0">
     <channel>
+      <generator><x:if test="atom:generator"><x:apply-templates select="atom:generator" mode="gen"/> + </x:if>Atom 1.0 EXSLT Transform v1.1 (http://atom.geekhood.net/)</generator>
       <x:if test="//@xml:lang">
         <language><x:value-of select="//@xml:lang[1]" /></language>
       </x:if>
@@ -34,7 +35,6 @@
       </x:choose>
 
       <x:apply-templates />
-      <generator><x:if test="atom:generator"><x:apply-templates select="atom:generator" mode="gen"/> + </x:if>Atom 1.0 EXSLT Transform v1.1 (http://atom.geekhood.net/)</generator>
     </channel>
   </rss>
 </x:template>
@@ -55,7 +55,7 @@
 </x:template>
 
 <x:template match="atom:entry/atom:published"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
-<x:template match="atom:entry/atom:updated"></x:template>
+<x:template match="atom:entry/atom:updated"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
 <x:template match="atom:feed/atom:updated"><pubDate><x:call-template name="rfc822Date"><x:with-param name="isoDate" select="."/></x:call-template></pubDate></x:template>
 
 <x:template match="atom:rights"><copyright><x:apply-templates /></copyright></x:template>
@@ -89,7 +89,13 @@
 	 (<x:value-of select="atom:name"/><x:if test="@uri"> <x:value-of select="uri"/></x:if>)
 </x:template>
 	
-<x:template match="atom:author[not(contains(./atom:email,'webmaster'))][1]">
+<x:template match="atom:entry/atom:author[not(contains(./atom:email,'webmaster'))][1]">
+	<author>
+		<x:call-template name="person" />
+	</author>
+</x:template>
+
+<x:template match="atom:feed/atom:author[not(contains(./atom:email,'webmaster'))][1]">
 	<managingEditor>
 		<x:call-template name="person" />
 	</managingEditor>
