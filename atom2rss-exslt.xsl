@@ -14,6 +14,7 @@
 <x:template match="/atom:feed">
   <rss version="2.0">
     <channel>
+      <generator><x:if test="atom:generator"><x:apply-templates select="atom:generator" mode="gen"/> + </x:if>Atom 1.0 EXSLT Transform v1.1 (http://atom.geekhood.net/)</generator>
       <x:if test="//@xml:lang">
         <language><x:value-of select="//@xml:lang[1]" /></language>
       </x:if>
@@ -34,7 +35,6 @@
       </x:choose>
 
       <x:apply-templates />
-      <generator><x:if test="atom:generator"><x:apply-templates select="atom:generator" mode="gen"/> + </x:if>Atom 1.0 EXSLT Transform v1.1 (http://atom.geekhood.net/)</generator>
     </channel>
   </rss>
 </x:template>
